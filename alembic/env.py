@@ -8,7 +8,8 @@ from alembic import context
 
 # МОИ МОДЕЛИ
 from app.db.base import Base  # DeclarativeBase
-from app.models.extra import Game, ItemType
+from app.models.extra import Game, ItemType, GameAccounts, Market, ItemFloat
+from app.models.item import Item
 
 # Alembic config object
 config = context.config
