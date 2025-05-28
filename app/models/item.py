@@ -32,4 +32,3 @@ class Item(TimestampMixin, Base):
     item_float: Mapped["ItemFloat"] = relationship(back_populates="float_items")
     account: Mapped["GameAccounts"] = relationship(back_populates="account_items")
     market: Mapped["Market"] = relationship(back_populates="market_items")
-

@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel, ConfigDict
 
 
@@ -11,11 +13,15 @@ class GetItemType(TunedModel):
     game_id: int
 
 
-#TODO: разделить методы
-class CreateUpdateGetItemType(TunedModel):
+class CreateItemType(TunedModel):
     title: str
     game_id: int
 
 
-class DeleteGetItemTypeResponse(TunedModel):
+class UpdateItemType(TunedModel):
+    title: Optional[str] = None
+    game_id: Optional[int] = None
+
+
+class DeleteItemTypeResponse(TunedModel):
     id: int

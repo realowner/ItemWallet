@@ -3,14 +3,14 @@ from fastapi.exceptions import HTTPException
 from starlette import status
 
 from app.core.dependencies import get_itemtype_service
-from app.schemas.extra.itemtype import CreateUpdateGetItemType, GetItemType, DeleteGetItemTypeResponse
+from app.schemas.extra.itemtype import CreateItemType, UpdateItemType, GetItemType, DeleteItemTypeResponse
 from app.services.extra.itemtype import ItemTypeService
 
 item_type_router = APIRouter()
 
 
 @item_type_router.post('/types', response_model=GetItemType)
-async def create_item_type(item_type: CreateUpdateGetItemType, service: ItemTypeService = Depends(get_itemtype_service)):
+async def create_item_type(item_type: CreateItemType, service: ItemTypeService = Depends(get_itemtype_service)):
     type_object = await service.add_type(item_type)
     return type_object
 
@@ -35,7 +35,7 @@ async def get_one_item_type(type_id: int, service: ItemTypeService = Depends(get
     return type_object
 
 
-@item_type_router.delete('/types/{type_id}', response_model=DeleteGetItemTypeResponse)
+@item_type_router.delete('/types/{type_id}', response_model=DeleteItemTypeResponse)
 async def delete_item_type(type_id: int, service: ItemTypeService = Depends(get_itemtype_service)):
     type_object = await service.delete_type(type_id)
 
@@ -50,8 +50,8 @@ async def delete_item_type(type_id: int, service: ItemTypeService = Depends(get_
 
 
 @item_type_router.patch('/types/{type_id}', response_model=GetItemType)
-async def update_item_type(type_id: int, item_type: CreateUpdateGetItemType,
-                      service: ItemTypeService = Depends(get_itemtype_service)):
+async def update_item_type(type_id: int, item_type: UpdateItemType,
+                           service: ItemTypeService = Depends(get_itemtype_service)):
     type_object = await service.update_type(type_id, item_type)
 
     # TODO: подумать о перемещении в сервисы

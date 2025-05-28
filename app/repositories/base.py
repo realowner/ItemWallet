@@ -66,7 +66,8 @@ class SQLAlchemyRepository(BaseRepository):
 
         if obj:
             for key, value in data.items():
-                setattr(obj, key, value)
+                if value:
+                    setattr(obj, key, value)
 
             await self.session.commit()
             await self.session.refresh(obj)

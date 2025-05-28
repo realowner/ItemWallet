@@ -6,6 +6,11 @@ from fastapi.routing import APIRouter
 
 from app.api.v1.extra.game import game_router
 from app.api.v1.extra.itemtype import item_type_router
+from app.api.v1.extra.gameaccount import game_account_router
+from app.api.v1.extra.market import market_router
+from app.api.v1.extra.itemfloat import float_router
+from app.api.v1.item import item_router
+
 from app.utils.exceptions import (custom_http_exception_handler,
                                   validation_exception_handler,
                                   generic_exception_handler)
@@ -18,6 +23,10 @@ main_app_router = APIRouter()
 app.include_router(main_app_router)
 app.include_router(game_router)
 app.include_router(item_type_router)
+app.include_router(game_account_router)
+app.include_router(market_router)
+app.include_router(float_router)
+app.include_router(item_router)
 
 app.add_exception_handler(HTTPException, custom_http_exception_handler)
 app.add_exception_handler(RequestValidationError, validation_exception_handler)

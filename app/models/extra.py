@@ -55,4 +55,3 @@ class ItemFloat(TimestampMixin, Base):
     max_value: Mapped[float] = mapped_column(Float, nullable=False)
 
     float_items: Mapped[list["Item"]] = relationship(back_populates="item_float", cascade="all, delete-orphan")
-
